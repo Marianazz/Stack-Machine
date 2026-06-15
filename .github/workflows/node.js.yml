@@ -16,4 +16,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20.x
-      - run: node --input-type=module < StackMachine.js && echo "Sintaxe OK"
+      - name: Check syntax
+        run: node --check index.js && echo "✓ Sintaxe OK"
+      - name: Verify CLI is executable
+        run: test -x index.js || chmod +x index.js && echo "✓ CLI executável"

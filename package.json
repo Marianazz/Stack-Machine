@@ -1,15 +1,22 @@
 {
-    "name":  "atividade",
-    "version":  "1.0.0",
-    "description":  "",
-    "main":  "StackMachine.js",
-    "scripts":  {
-                    "test":  "echo \"Error: no test specified\" \u0026\u0026 exit 1"
-                },
-    "keywords":  [
-
-                 ],
-    "author":  "",
-    "license":  "ISC",
-    "type":  "module"
+  "name": "stack-machine",
+  "version": "1.0.0",
+  "description": "A stack-based calculator and instruction executor",
+  "main": "index.js",
+  "type": "module",
+  "bin": {
+    "stack-machine": "./index.js"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["stack", "calculator", "cli"],
+  "author": "",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Marianazz/Stack-Machine"
+  }
 }
+
