@@ -19,7 +19,7 @@ Exemplo: para calcular `5 + 3`, primeiro empilhamos o `5`, depois o `3`, e entã
 **Requisitos:** Node.js instalado (versão 14 ou superior).
 
 ```bash
-node machine.js
+node StackMachine.js
 ```
 
 ---
@@ -83,7 +83,7 @@ O programa detecta e reporta os seguintes erros, interrompendo a execução imed
 ## Estrutura do código
 
 ```
-machine.js
+StackMachine.js
 │
 ├── executePush(value)         — valida e empilha um número
 ├── executeOperation(op)       — executa add, sub, mul ou div com validação
