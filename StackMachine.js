@@ -7,7 +7,7 @@ function executePush(value) {
 }
 
 function executeAdd() {
-  // Bug #2: valida se há elementos suficientes antes de operar
+
   if (stack.length < 2) {
     console.log("Erro: 'add' precisa de pelo menos 2 elementos na pilha!");
     return;
@@ -46,7 +46,7 @@ function executeDiv() {
   const b = stack.pop();
   if (a === 0) {
     console.log("Erro: divisão por zero!");
-    stack.push(b); // Bug #2: devolve b à pilha para não perder o valor
+    stack.push(b); 
     return;
   }
   stack.push(b / a);
@@ -57,7 +57,7 @@ function executeInstruction(line) {
   const instruction = parts[0].toLowerCase();
 
   if (instruction === "push") {
-    // Bug #1: valida se o argumento existe e é um número válido
+
     if (parts.length < 2 || parts[1] === undefined) {
       console.log("Erro: 'push' precisa de um número. Exemplo: push 5");
       return;
@@ -118,7 +118,7 @@ rl.on("line", (linha) => {
       executeInstruction(instrucao);
     }
 
-    // Bug #3: valida se a pilha tem pelo menos um resultado
+
     if (stack.length === 0) {
       console.log("\nErro: nenhum resultado na pilha ao final do programa.");
       console.log("--------------------------------------------");
@@ -126,7 +126,6 @@ rl.on("line", (linha) => {
       return;
     }
 
-    // Bug #4: avisa se sobrou mais de um valor na pilha
     if (stack.length > 1) {
       console.log(`\nAviso: a pilha terminou com ${stack.length} valores: [${stack.join(", ")}]`);
       console.log("Um programa correto deve ter exatamente 1 valor ao final.");
