@@ -11,6 +11,11 @@ function executePush(value) {
     hasError = true;
     return;
   }
+  if (stack.length >= 2) {
+    console.error("Erro: A pilha já tem 2 valores. Use uma operação antes de empilhar mais.");
+    hasError = true;
+    return;
+  }
   stack.push(num);
 }
 
