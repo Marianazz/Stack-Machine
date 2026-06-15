@@ -1,3 +1,5 @@
+##Para usar :  npx github:Marianazz/Stack-Machine
+
 # Stack Machine
 
 ## Alunos : Amara Liz, João Guerini e Mariana Zorzi
