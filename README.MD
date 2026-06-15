@@ -1,6 +1,6 @@
 # Stack Machine
 
-## Alunos : Amara Liz, João Guerini e Mariana Zorza
+## Alunos : Amara Liz, João Guerini e Mariana Zorzi
 
 Simulador de uma máquina de pilha (*stack machine*) interativa, desenvolvido em JavaScript com Node.js. O programa recebe instruções via terminal, monta um programa e executa os cálculos usando uma pilha.
 
