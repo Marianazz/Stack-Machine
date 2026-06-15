@@ -1,5 +1,7 @@
 # Stack Machine
 
+## Alunos : Amara Liz, João Guerini e Mariana Zorza
+
 Simulador de uma máquina de pilha (*stack machine*) interativa, desenvolvido em JavaScript com Node.js. O programa recebe instruções via terminal, monta um programa e executa os cálculos usando uma pilha.
 
 ---
@@ -90,14 +92,3 @@ machine.js
 ```
 
 ---
-
-## Conceitos de JavaScript aplicados
-
-- **Arrays como pilha** — uso de `push()` e `pop()` para simular uma estrutura de pilha
-- **Funções separadas por responsabilidade** — cada operação tem sua própria função
-- **Switch / if-else** — para despachar as instruções corretamente
-- **Tratamento de erros** — validações com mensagens descritivas e flag `hasError`
-- **Template strings** — para montar mensagens de saída dinamicamente
-- **Regex em split** — `split(/\s+/)` para lidar com espaços irregulares na entrada
-- **Módulos ES (ESM)** — uso de `import` com `"type": "module"` no `package.json`
-- **readline** — leitura de entrada do terminal linha a linha via `node:readline`
