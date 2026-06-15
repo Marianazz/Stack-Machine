@@ -1,83 +1,76 @@
 import readline from "node:readline";
 
 const stack = [];
+const programa = [];
+let hasError = false;
 
 function executePush(value) {
-  stack.push(value);
+  const num = Number(value);
+  if (isNaN(num)) {
+    console.error(`Erro: Valor "${value}" não é um número válido.`);
+    hasError = true;
+    return;
+  }
+  stack.push(num);
 }
 
-function executeAdd() {
-
+function executeOperation(operation) {
   if (stack.length < 2) {
-    console.log("Erro: 'add' precisa de pelo menos 2 elementos na pilha!");
+    console.error(`Erro: A pilha não tem operandos suficientes para a operação '${operation}'.`);
+    hasError = true;
     return;
   }
   const a = stack.pop();
   const b = stack.pop();
-  stack.push(b + a);
-}
 
-function executeSub() {
-  if (stack.length < 2) {
-    console.log("Erro: 'sub' precisa de pelo menos 2 elementos na pilha!");
-    return;
+  switch (operation) {
+    case "add":
+      stack.push(b + a);
+      break;
+    case "sub":
+      stack.push(b - a);
+      break;
+    case "mul":
+      stack.push(b * a);
+      break;
+    case "div":
+      if (a === 0) {
+        console.error("Erro: Divisão por zero!");
+        hasError = true;
+        return;
+      }
+      stack.push(b / a);
+      break;
   }
-  const a = stack.pop();
-  const b = stack.pop();
-  stack.push(b - a);
-}
-
-function executeMul() {
-  if (stack.length < 2) {
-    console.log("Erro: 'mul' precisa de pelo menos 2 elementos na pilha!");
-    return;
-  }
-  const a = stack.pop();
-  const b = stack.pop();
-  stack.push(b * a);
-}
-
-function executeDiv() {
-  if (stack.length < 2) {
-    console.log("Erro: 'div' precisa de pelo menos 2 elementos na pilha!");
-    return;
-  }
-  const a = stack.pop();
-  const b = stack.pop();
-  if (a === 0) {
-    console.log("Erro: divisão por zero!");
-    stack.push(b); 
-    return;
-  }
-  stack.push(b / a);
 }
 
 function executeInstruction(line) {
-  const parts = line.trim().split(" ");
+  const parts = line.trim().split(/\s+/);
   const instruction = parts[0].toLowerCase();
 
-  if (instruction === "push") {
+  if (hasError) return;
 
-    if (parts.length < 2 || parts[1] === undefined) {
-      console.log("Erro: 'push' precisa de um número. Exemplo: push 5");
-      return;
-    }
-    const value = Number(parts[1]);
-    if (isNaN(value)) {
-      console.log(`Erro: "${parts[1]}" não é um número válido.`);
-      return;
-    }
-    executePush(value);
-  } else if (instruction === "add") {
-    executeAdd();
-  } else if (instruction === "sub") {
-    executeSub();
-  } else if (instruction === "mul") {
-    executeMul();
-  } else if (instruction === "div") {
-    executeDiv();
-  } else {
-    console.log(`Instrução desconhecida: "${instruction}"`);
+  switch (instruction) {
+    case "push":
+      if (parts.length < 2) {
+        console.error("Erro: Instrução 'push' requer um valor.");
+        hasError = true;
+        return;
+      }
+      executePush(parts[1]);
+      break;
+    case "add":
+    case "sub":
+    case "mul":
+    case "div":
+      executeOperation(instruction);
+      break;
+    default:
+      if (instruction) {
+        console.error(`Erro: Instrução desconhecida: "${instruction}"`);
+        hasError = true;
+      }
+      break;
   }
 }
 
@@ -87,58 +80,62 @@ const rl = readline.createInterface({
 });
 
 console.log("============================================");
-console.log("       Stack Machine — Digite instruções    ");
+console.log("       Stack Machine — Digite instruçoes    ");
 console.log("============================================");
-console.log("Instruções: push <número> | add | sub | mul | div");
-console.log('Digite "run" para executar e ver o resultado');
+console.log("Instruções: push <numero> | add | sub | mul | div");
+console.log('Digite "run" para executar e ver o resutado');
 console.log('Digite "reset" para limpar a pilha');
 console.log('Digite "exit" para sair');
-console.log("--------------------------------------------\n");
+console.log("--------------------------------------------");
 
-const programa = [];
+function resetMachine() {
+  stack.length = 0;
+  programa.length = 0;
+  hasError = false;
+  console.log("Pilha e programa resetados.");
+}
 
 rl.on("line", (linha) => {
   const input = linha.trim().toLowerCase();
 
-  if (input === "exit") {
-    console.log("Encerrando. Até logo!");
-    rl.close();
-  } else if (input === "reset") {
-    stack.length = 0;
-    programa.length = 0;
-    console.log("Pilha e programa resetados.\n");
-  } else if (input === "run") {
-    if (programa.length === 0) {
-      console.log("Nenhuma instrução digitada ainda.\n");
-      return;
-    }
+  switch (input) {
+    case "exit":
+      console.log("Encerrando. Até logo!");
+      rl.close();
+      break;
+    case "reset":
+      resetMachine();
+      break;
+    case "run":
+      if (programa.length === 0) {
+        console.log("Nenhuma instrução para executar.");
+        return;
+      }
 
-    stack.length = 0;
-    for (const instrucao of programa) {
-      executeInstruction(instrucao);
-    }
+      stack.length = 0;
+      hasError = false;
 
+      for (const instrucao of programa) {
+        executeInstruction(instrucao);
+        if (hasError) {
+          break; 
+        }
+      }
 
-    if (stack.length === 0) {
-      console.log("\nErro: nenhum resultado na pilha ao final do programa.");
+      if (!hasError) {
+        const resultado = stack.pop() ?? "Pilha vazia";
+        console.log(`\nResultado: ${resultado}`);
+      }
+      
       console.log("--------------------------------------------");
       programa.length = 0;
-      return;
-    }
-
-    if (stack.length > 1) {
-      console.log(`\nAviso: a pilha terminou com ${stack.length} valores: [${stack.join(", ")}]`);
-      console.log("Um programa correto deve ter exatamente 1 valor ao final.");
-    }
-
-    const resultado = stack.pop();
-    console.log(`\nResultado: ${resultado}`);
-    console.log("--------------------------------------------");
-
-    programa.length = 0;
-    stack.length = 0;
-    console.log("Pronto para um novo programa.\n");
-  } else if (input !== "") {
-    programa.push(linha.trim());
+      stack.length = 0;
+      console.log("Pronto para um novo programa.");
+      break;
+    default:
+      if (linha.trim()) {
+        programa.push(linha.trim());
+      }
+      break;
   }
 });
