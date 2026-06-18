@@ -47,23 +47,6 @@ Resultado: `12`
 
 ---
 
-**Calculando `20 / 5`:**
-
-```
-push 20
-push 5
-div
-run
-```
-
-Resultado: `4`
-
----
-
-## Documentação Técnica [DOCUMENTATION.md](DOCUMENTATION.md).
-
----
-
 ## Estrutura do código
 
 ```
