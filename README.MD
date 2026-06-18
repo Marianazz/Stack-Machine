@@ -1,28 +1,17 @@
-## Para usar :  npx github:Marianazz/Stack-Machine
+## Para usar :  
+
+```bash
+npx github:Marianazz/Stack-Machine
+```
 
 # Stack Machine
 
 ## Alunos : Amara Liz, João Guerini e Mariana Zorzi
 
-Simulador de uma máquina de pilha (*stack machine*) interativa, desenvolvido em JavaScript com Node.js. O programa recebe instruções via terminal, monta um programa e executa os cálculos usando uma pilha.
+### Simulador de uma *stack machine*
 
----
 
-## O que é uma Stack Machine?
-
-Uma *stack machine* é um modelo de computação que usa uma **pilha** como estrutura principal de dados. Em vez de usar variáveis nomeadas, os valores são empilhados e as operações consomem os valores do topo da pilha.
-
-Exemplo: para calcular `5 + 3`, primeiro empilhamos o `5`, depois o `3`, e então executamos `add` — a máquina retira os dois valores, soma, e devolve o resultado `8` para a pilha.
-
----
-
-## Como executar
-
-**Requisitos:** Node.js instalado (versão 14 ou superior).
-
-```bash
-node StackMachine.js
-```
+**Para executar Requer:** Node.js instalado (versão 14 ou superior).
 
 ---
 
@@ -71,21 +60,14 @@ Resultado: `4`
 
 ---
 
-## Tratamento de erros
-
-O programa detecta e reporta os seguintes erros, interrompendo a execução imediatamente:
-
-- Valor não numérico passado para `push`
-- Pilha com operandos insuficientes para uma operação
-- Divisão por zero
-- Instrução desconhecida
+## Documentação Técnica [DOCUMENTATION.md](DOCUMENTATION.md).
 
 ---
 
 ## Estrutura do código
 
 ```
-StackMachine.js
+index.js
 │
 ├── executePush(value)         — valida e empilha um número
 ├── executeOperation(op)       — executa add, sub, mul ou div com validação
