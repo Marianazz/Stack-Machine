@@ -1,14 +1,14 @@
-## Para usar :  
+
+# Stack Machine
+### Para usar :  
 
 ```bash
 npx github:Marianazz/Stack-Machine
 ```
 
-# Stack Machine
 
-## Alunos : Amara Liz, João Guerini e Mariana Zorzi
+###### Alunos : Amara Liz, João Guerini e Mariana Zorzi
 
-### Simulador de uma *stack machine*
 
 
 **Para executar Requer:** Node.js instalado (versão 14 ou superior).
