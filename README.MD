@@ -1,18 +1,11 @@
 
 # Stack Machine
-### Para usar :  
 
 ```bash
 npx github:Marianazz/Stack-Machine
 ```
 
-
 ###### Alunos : Amara Liz, João Guerini e Mariana Zorzi
-
-
-
-**Para executar Requer:** Node.js instalado (versão 14 ou superior).
-
 ---
 
 ## Instruções disponíveis
@@ -28,34 +21,4 @@ npx github:Marianazz/Stack-Machine
 | `reset`        | Limpa a pilha e o programa atual                       |
 | `exit`         | Encerra o programa                                     |
 
----
 
-## Exemplos de uso
-
-**Calculando `(10 - 4) * 2`:**
-
-```
-push 10
-push 4
-sub
-push 2
-mul
-run
-```
-
-Resultado: `12`
-
----
-
-## Estrutura do código
-
-```
-index.js
-│
-├── executePush(value)         — valida e empilha um número
-├── executeOperation(op)       — executa add, sub, mul ou div com validação
-├── executeInstruction(line)   — interpreta uma linha de instrução
-└── rl.on("line", ...)         — loop principal de leitura do terminal
-```
-
----
