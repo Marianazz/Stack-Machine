@@ -1,11 +1,11 @@
 
 # Stack Machine
 
+###### Alunos : Amara Liz, João Guerini e Mariana Zorzi
+
 ```bash
 npx github:Marianazz/Stack-Machine
 ```
-
-###### Alunos : Amara Liz, João Guerini e Mariana Zorzi
 ---
 
 ## Instruções disponíveis
